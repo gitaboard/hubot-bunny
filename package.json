@@ -1,1 +1,47 @@
-{  "name": "hubot-bunny",  "version": "0.0.1",  "author": {    "name": "Bunny",    "url": "https://www.cl9p.com/"  },  "contributors": [    {      "name": "Lee Faus",      "email": "lee@cl9p.com"    }  ],  "keywords": [    "hubot",    "amqp",    "rabbitmq",    "bunny",    "adapter"  ],  "description": "A RabbitMQ adapter for Hubot",  "licenses": [    {      "type": "MIT",      "url": "http://opensource.org/licenses/mit-license.php"    }  ],  "repository": {    "type": "git",    "url": "http://github.com/cl9p/hubot-bunny.git"  },  "bugs": {    "url": "http://github.com/cl9p/hubot-bunny/issues",    "email": "team@cl9p.com"  },  "dependencies": {    "amqp": "^0.2.3"  },  "devDependencies": {    "coffee-script": ">=1.2.0"  },  "main": "./src/bunny",  "engines": {    "node": ">=0.4.7"  }}
+{
+  "name": "hubot-bunny",
+  "version": "0.0.1",
+  "author": {
+    "name": "Bunny",
+    "url": "https://www.cl9p.com/"
+  },
+  "contributors": [
+    {
+      "name": "Lee Faus",
+      "email": "lee@cl9p.com"
+    }
+  ],
+  "keywords": [
+    "hubot",
+    "amqp",
+    "rabbitmq",
+    "bunny",
+    "adapter"
+  ],
+  "description": "A RabbitMQ adapter for Hubot",
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "http://opensource.org/licenses/mit-license.php"
+    }
+  ],
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/cl9p/hubot-bunny.git"
+  },
+  "bugs": {
+    "url": "http://github.com/cl9p/hubot-bunny/issues",
+    "email": "team@cl9p.com"
+  },
+  "dependencies": {
+    "amqp": "^0.2.3"
+  },
+  "devDependencies": {
+    "coffee-script": ">=1.2.0",
+    "hubot": "^2.11.1"
+  },
+  "main": "./src/bunny",
+  "engines": {
+    "node": ">=0.4.7"
+  }
+}
