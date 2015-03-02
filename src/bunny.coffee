@@ -19,13 +19,16 @@ class Bunny extends Adapter
   connect: ->
     @robot.logger.info "Connect"
     # create the connection
+    value = null
     connection = amqp.createConnection({host: "localhost", port: 5672})
-    connection.on( "ready", () ->
-      connection.exchange("hubot.chatops", {}, (exchange) ->
-        connection.queue("hubot.commands", {}, (queue) ->
+    connection.on( "ready", () =>
+      connection.exchange("hubot.chatops", {}, (exchange) =>
+        connection.queue("hubot.commands", {}, (queue) =>
           queue.bind(exchange, "hubot.commands.#")
-          queue.subscribe((message, headers, deliveryInfo) ->
-            console.info "#{queue.name} received => #{message.data}"
+          queue.subscribe((message, headers, deliveryInfo) =>
+            @robot.logger.info "#{queue.name} received => #{message.data}"
+            message = new TextMessage(queue.name, message.data.toString('utf8'), 'messageId')
+            @receive message
             )
           )
         )
