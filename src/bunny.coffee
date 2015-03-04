@@ -1,17 +1,21 @@
-{Robot, Adapter, TextMessage} = require 'hubot'
-amqp                          = require 'amqp'
-util                          = require 'util'
+try
+  {Robot,Adapter,TextMessage,User} = require 'hubot'
+catch
+  prequire = require('parent-require')
+  {Robot,Adapter,TextMessage,User} = prequire 'hubot'
+amqp                             = require 'amqp'
+util                             = require 'util'
 
 class Bunny extends Adapter
 
   constructor: ->
     super
     @robot.logger.info "Constructor"
-    @requestX = @requestQ = null
-    @robot.logger.info "Connection Created..."
 
   send: (envelope, strings...) ->
     @robot.logger.info "Send"
+    @robot.logger.info "#{util.inspect(envelope)}"
+    @robot.logger.info "#{util.inspect(strings[0])}"
 
   reply: (envelope, strings...) ->
     @robot.logger.info "Reply"
@@ -26,9 +30,9 @@ class Bunny extends Adapter
         connection.queue("hubot.commands", {}, (queue) =>
           queue.bind(exchange, "hubot.commands.#")
           queue.subscribe((message, headers, deliveryInfo) =>
-            @robot.logger.info "#{queue.name} received => #{message.data}"
-            message = new TextMessage(queue.name, message.data.toString('utf8'), 'messageId')
-            @receive message
+            user = new User 1001, name: 'RabbitMQ', queue: queue.name
+            message = new TextMessage user, message.data.toString('utf-8'), 'messageId'
+            @robot.receive message
             )
           )
         )
@@ -39,6 +43,8 @@ class Bunny extends Adapter
   run: ->
     @robot.logger.info "Run"
     @connect()
+    @emit "connected"
+
 
 exports.use = (robot) ->
   new Bunny robot

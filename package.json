@@ -34,11 +34,14 @@
     "email": "team@cl9p.com"
   },
   "dependencies": {
-    "amqp": "^0.2.3"
+    "amqp": "^0.2.3",
+    "parent-require": "^1.0.0"
+  },
+  "peerDependencies": {
+    "hubot": "^2.11.1"
   },
   "devDependencies": {
-    "coffee-script": ">=1.2.0",
-    "hubot": "^2.11.1"
+    "coffee-script": ">=1.2.0"
   },
   "main": "./src/bunny",
   "engines": {
