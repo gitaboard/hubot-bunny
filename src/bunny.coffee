@@ -19,12 +19,20 @@ class Bunny extends Adapter
     @robot.logger.info "#{util.inspect(strings[0])}"
     @connection.exchange("hubot.chatops", {type: 'direct', autoDelete: 'true'}, (exchange) =>
       @robot.logger.info "Exchange Created..."
-      exchange.publish("repositories.sample", strings[0])
-      )
+      strings.forEach((s) ->
+          exchange.publish("repositories.sample", s);
+        );
+      );
 
 
   reply: (envelope, strings...) ->
     @robot.logger.info "Reply"
+    @connection.exchange("hubot.chatops", {type: 'direct', autoDelete: 'true'}, (exchange) =>
+      @robot.logger.info "Exchange Created..."
+      strings.forEach((s) ->
+        exchange.publish("repositories.sample", s);
+        );
+      );
 
   connect: ->
     @robot.logger.info "Connect"
@@ -33,7 +41,7 @@ class Bunny extends Adapter
 
     @connection.on( "ready", () =>
       @connection.exchange("hubot.chatops", {type: 'direct', autoDelete: 'true'}, (exchange) =>
-        @connection.queue("hubot.inbound", {}, (queue) =>
+        @connection.queue("", {}, (queue) =>
           queue.bind(exchange, "repositories.sample")
           queue.subscribe((message, headers, deliveryInfo) =>
             user = new User 1001, name: 'RabbitMQ', queue: queue.name
