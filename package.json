@@ -3,12 +3,12 @@
   "version": "0.0.1",
   "author": {
     "name": "Bunny",
-    "url": "https://www.cl9p.com/"
+    "url": "https://github.com/squirrelco/hubot-bunny/"
   },
   "contributors": [
     {
       "name": "Lee Faus",
-      "email": "lee@cl9p.com"
+      "email": "leefaus@github.com"
     }
   ],
   "keywords": [
