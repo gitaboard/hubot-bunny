@@ -27,11 +27,11 @@
   ],
   "repository": {
     "type": "git",
-    "url": "http://github.com/cl9p/hubot-bunny.git"
+    "url": "http://github.com/squirrelco/hubot-bunny.git"
   },
   "bugs": {
-    "url": "http://github.com/cl9p/hubot-bunny/issues",
-    "email": "team@cl9p.com"
+    "url": "http://github.com/squirrelco/hubot-bunny/issues",
+    "email": "leefaus@github.com"
   },
   "dependencies": {
     "amqp": "^0.2.3",
